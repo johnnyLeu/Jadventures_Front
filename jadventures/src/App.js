@@ -1,12 +1,12 @@
 // App.js
 import React, { useState } from 'react';
-import FilterComponent from './Components/FilterComponent';
-import QuestComponent from './Components/QuestComponent';
+import FilterComponent from './components/FilterComponent';
+import QuestComponent from './components/QuestComponent';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.css';
-import Homepage from './Components/homepage/Homepage';
-import Navbar from './Components/navbar/Navbar';
-import PatronLogin from './Components/login/PatronLogin';
+import Homepage from './components/homepage/Homepage';
+import Navbar from './components/navbar/Navbar';
+import PatronLogin from './components/login/PatronLogin';
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
