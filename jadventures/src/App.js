@@ -1,25 +1,27 @@
 // App.js
-import React, { useState } from "react";
-// src/App.js
-import React from 'react';
+import React, { useState } from 'react';
 import FilterComponent from './Components/FilterComponent';
 import QuestComponent from './Components/QuestComponent';
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.css';
-import Homepage from "./components/homepage/Homepage";
-import Navbar from "./components/navbar/Navbar";
-import PatronLogin from "./components/login/PatronLogin";
+import Homepage from './Components/homepage/Homepage';
+import Navbar from './Components/navbar/Navbar';
+import PatronLogin from './Components/login/PatronLogin';
 
 function App() {
-  
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-
+  const [filteredQuestDataList, setFilteredQuestDataList] = useState([]);
+  
   const handleLogin = () => {
     setIsAuthenticated(true);
   };
 
   const handleLogout = () => {
     setIsAuthenticated(false);
+  };
+
+  const handleApplyFilters = (filteredData) => {
+    setFilteredQuestDataList(filteredData);
   };
 
   const questDataList = [
@@ -63,25 +65,21 @@ function App() {
   };
 
   return (
-    <BrowserRouter>
-      <Navbar isAuthenticated={isAuthenticated} handleLogout={handleLogout} />
-       <Routes>
-        <Route index element={<Homepage />} />
-        <Route path="patronlogin" element={<PatronLogin handleLogin={handleLogin} isAuthenticated={isAuthenticated} />} />
-      </Routes>
-    </BrowserRouter>
-    <div style={{ textAlign: 'center', display: 'flex', justifyContent: 'space-between' }}>
-      {/* Posiziona il componente del filtro a sinistra */}
-      <FilterComponent />
-      {/* Posiziona il componente della lista delle quest a destra */}
-      <QuestComponent questDataList={questDataList} onQuestClick={handleQuestClick} />
-    </div>
-
-
-
-
-//Variabile di contesto globale
-//è STATE dell'intera applicazione;
+    <>
+      <BrowserRouter>
+        <Navbar isAuthenticated={isAuthenticated} handleLogout={handleLogout} />
+        <Routes>
+          <Route index element={<Homepage />} />
+          <Route path="patronlogin" element={<PatronLogin handleLogin={handleLogin} isAuthenticated={isAuthenticated} />} />
+        </Routes>
+      </BrowserRouter>
+      <div style={{ textAlign: 'center', display: 'flex', justifyContent: 'space-between' }}>
+        {/* Posiziona il componente del filtro a sinistra */}
+        <FilterComponent applyFilters={handleApplyFilters} questDataList={questDataList} />
+        {/* Posiziona il componente della lista delle quest a destra */}
+        <QuestComponent questDataList={filteredQuestDataList} onQuestClick={handleQuestClick} />
+      </div>
+    </>
   );
 }
 

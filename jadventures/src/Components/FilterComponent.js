@@ -1,7 +1,4 @@
-
 import React, { useState } from 'react';
-
-import QuestComponent from '../Components/QuestComponent';
 
 const FilterComponent = ({ applyFilters, questDataList }) => {
   const [filterCriteria, setFilterCriteria] = useState({
@@ -19,13 +16,17 @@ const FilterComponent = ({ applyFilters, questDataList }) => {
 
   const handleApplyFilters = () => {
     const filteredData = questDataList.filter((quest) => {
+      const isStatusMatch = filterCriteria.status === '' || quest.status.toLowerCase().includes(filterCriteria.status.toLowerCase());
+      const isTypeMatch = filterCriteria.type === '' || quest.title.toLowerCase().includes(filterCriteria.type.toLowerCase());
+      const isAreaMatch = filterCriteria.area === '' || quest.area.toLowerCase().includes(filterCriteria.area.toLowerCase());
+
       return (
-        quest.title.toLowerCase().includes(filterCriteria.type.toLowerCase()) &&
+        isStatusMatch &&
         quest.minRank >= filterCriteria.minRank &&
         quest.maxRank <= filterCriteria.maxRank &&
         quest.reward >= filterCriteria.minReward &&
-        quest.description.toLowerCase().includes(filterCriteria.area.toLowerCase()) &&
-        quest.status.toLowerCase().includes(filterCriteria.status.toLowerCase())
+        isAreaMatch &&
+        isTypeMatch
       );
     });
 
