@@ -75,7 +75,7 @@ function App() {
       </BrowserRouter>
       <div style={{ textAlign: 'center', display: 'flex', justifyContent: 'space-between' }}>
         {/* Posiziona il componente del filtro a sinistra */}
-        <FilterComponent applyFilters={handleApplyFilters} questDataList={questDataList} />
+        <FilterComponent applyFilters={handleApplyFilters} questDataList={questDataList} style={{}} />
         {/* Posiziona il componente della lista delle quest a destra */}
         <QuestComponent questDataList={filteredQuestDataList} onQuestClick={handleQuestClick} />
       </div>

@@ -34,7 +34,7 @@ const FilterComponent = ({ applyFilters, questDataList }) => {
   };
 
   return (
-    <div style={{ textAlign: 'left', border: '1px solid #ddd', padding: '25px', borderRadius: '15px', marginLeft: '20px', width: '200px', height: '700px' }}>
+    <div style={{ textAlign: 'left', border: '1px solid #ddd', padding: '45px', borderRadius: '15px', marginLeft: '20px', width: '300px', height: '700px' }}>
       <div>
         <label>Type:</label>
         <input
@@ -77,7 +77,7 @@ const FilterComponent = ({ applyFilters, questDataList }) => {
           value={filterCriteria.status}
           onChange={(e) => handleInputChange('status', e.target.value)}
         />
-
+        <div style={{ marginTop: '30px' }}></div>
         <button onClick={handleApplyFilters}>
           Apply Filters
         </button>
