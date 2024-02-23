@@ -1,9 +1,8 @@
-// src/components/QuestComponent.js
 import React from 'react';
 
 const QuestComponent = ({ questDataList, onQuestClick }) => {
   return (
-    <div>
+    <div className="row">
       {questDataList.map((quest) => {
         const { id, title, description, reward, area, status } = quest;
 
@@ -16,24 +15,19 @@ const QuestComponent = ({ questDataList, onQuestClick }) => {
         return (
           <div
             key={id}
-            style={{
-              textAlign: 'center',
-              marginLeft: '10',
-              border: '4px solid #ddd',
-              padding: '15px',
-              borderRadius: '5px',
-              marginBottom: '10px',
-              cursor: 'pointer',
-              height: '500px',
-              width: '500px',
-            }}
+            className="col-md-4 mb-4"
             onClick={handleClick}
           >
-            <h3>{title}</h3>
-            <p>{description}</p>
-            <p>Reward: {reward}</p>
-            <p>Area: {area}</p>
-            <p>Status: {status}</p>
+            <div className="card">
+              <img src="https://picsum.photos/200" className="card-img-top" alt="Quest" style={{}} />
+              <div className="card-body">
+                <h5 className="card-title">{title}</h5>
+                <p className="card-text">{description}</p>
+                <p className="card-text">Reward: {reward}</p>
+                <p className="card-text">Area: {area}</p>
+                <p className="card-text">Status: {status}</p>
+              </div>
+            </div>
           </div>
         );
       })}

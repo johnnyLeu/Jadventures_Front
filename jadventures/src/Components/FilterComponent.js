@@ -37,51 +37,52 @@ const FilterComponent = ({ applyFilters, questDataList }) => {
   };
 
   return (
-    <div style={{ textAlign: 'left', border: '1px solid #ddd', padding: '45px', borderRadius: '15px', marginLeft: '20px', width: '300px', height: '700px' }}>
-      <div>
+    <div className="card" style={{ width: '38rem', margin: '20px' }}>
+      <div className="card-body">
+        <h5 className="card-title">Filters</h5>
         <label>Type:</label>
         <input
           type="text"
+          className="form-control"
           value={filterCriteria.type}
           onChange={(e) => handleInputChange('type', e.target.value)}
         />
-        <div style={{ textAlign: 'left' }}></div>
         <label>Min Rank:</label>
         <input
           type="number"
+          className="form-control"
           value={filterCriteria.minRank}
           onChange={(e) => handleInputChange('minRank', parseInt(e.target.value) || 0)}
         />
-        <div style={{ textAlign: 'left' }}></div>
         <label>Max Rank:</label>
         <input
           type="number"
+          className="form-control"
           value={filterCriteria.maxRank}
           onChange={(e) => handleInputChange('maxRank', parseInt(e.target.value) || Infinity)}
         />
-        <div style={{ textAlign: 'left' }}></div>
         <label>Min Reward:</label>
         <input
           type="number"
+          className="form-control"
           value={filterCriteria.minReward}
           onChange={(e) => handleInputChange('minReward', parseInt(e.target.value) || 0)}
         />
-        <div style={{ textAlign: 'left' }}></div>
         <label>Area:</label>
         <input
           type="text"
+          className="form-control"
           value={filterCriteria.area}
           onChange={(e) => handleInputChange('area', e.target.value)}
         />
-        <div style={{ textAlign: 'left' }}></div>
         <label>Status:</label>
         <input
           type="text"
+          className="form-control"
           value={filterCriteria.status}
           onChange={(e) => handleInputChange('status', e.target.value)}
         />
-        <div style={{ marginTop: '30px' }}></div>
-        <button onClick={handleApplyFilters}>
+        <button className="btn btn-primary mt-3" onClick={handleApplyFilters}>
           Apply Filters
         </button>
       </div>

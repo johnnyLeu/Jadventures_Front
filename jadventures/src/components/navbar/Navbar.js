@@ -23,7 +23,7 @@ const Navbar = ({ isAuthenticated, handleLogout }) => {
                 <div className="collapse navbar-collapse" id="navbarNav">
                     <ul className="navbar-nav me-auto">
                         <li className="nav-item mx-5">
-                            <Link className="nav-link active text-white col-5 fs-4" to="">
+                            <Link className="nav-link active text-white col-5 fs-4" to="Homepage">
                                 ALL QUEST
                             </Link>
                         </li>
