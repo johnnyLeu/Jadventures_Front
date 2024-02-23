@@ -1,57 +1,37 @@
-import React, { useState } from "react";
+// PatronLogin.js
+import React, { useState } from 'react';
 
-const PatronLogin = () => {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+const PatronLogin = ({ handleLogin, isAuthenticated }) => {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
+  const validatePassword = (password) => {
+    const passwordRegex = /^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+    return passwordRegex.test(password);
+  };
 
-    try {
-      // Effettua una richiesta API per verificare le credenziali
-      const response = await fetch("patronlogin", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ username, password }),
-      });
-
-      // Controlla la risposta del server
-      if (response.ok) {
-        // Se la risposta è ok, l'accesso è avvenuto con successo
-        console.log("Accesso riuscito!");
-      } else {
-        // Se la risposta non è ok, gestisci l'errore
-        console.error("Errore durante l'accesso:", response.statusText);
-      }
-    } catch (error) {
-      console.error("Errore durante la richiesta API:", error.message);
+  const handleLoginClick = () => {
+    if (username === 'admin' && validatePassword(password)) {
+      console.log('Password valida:', password);
+      handleLogin();
+      setUsername(''); // Resetta il campo username
+      setPassword(''); // Resetta il campo password
+    } else {
+      console.log('Password non valida:', password);
+      alert('Credenziali non valide');
     }
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
-        <label htmlFor="username">Username:</label>
-        <input
-          type="text"
-          id="username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-        />
-      </div>
-      <div>
-        <label htmlFor="password">Password:</label>
-        <input
-          type="password"
-          id="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-      </div>
-      <button type="submit">Login</button>
-    </form>
+    <div>
+      {!isAuthenticated && (
+        <div>
+          <input type="text" placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)} />
+          <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
+          <button onClick={handleLoginClick}>Login</button>
+        </div>
+      )}
+    </div>
   );
 };
 
