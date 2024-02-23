@@ -11,12 +11,15 @@ const FilterComponent = ({ applyFilters, questDataList }) => {
   });
 
   const handleInputChange = (field, value) => {
-    setFilterCriteria({ ...filterCriteria, [field]: value });
+    setFilterCriteria(prevState => ({
+      ...prevState,
+      [field]: value
+    }));
   };
 
   const handleApplyFilters = () => {
     const filteredData = questDataList.filter((quest) => {
-      const isStatusMatch = filterCriteria.status === '' || quest.status.toLowerCase().includes(filterCriteria.status.toLowerCase());
+      const isStatusMatch = filterCriteria.status === '' || quest.status.toLowerCase() === filterCriteria.status.toLowerCase();
       const isTypeMatch = filterCriteria.type === '' || quest.title.toLowerCase().includes(filterCriteria.type.toLowerCase());
       const isAreaMatch = filterCriteria.area === '' || quest.area.toLowerCase().includes(filterCriteria.area.toLowerCase());
 
